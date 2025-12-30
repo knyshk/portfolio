@@ -79,7 +79,7 @@ const ContactSummary = () => {
   }, []);
 
   return (
-    <section className="bg-white py-12">
+    <section id="experience" className="bg-white py-12">
       <AnimatedHeaderSection
         subTitle={"Journey Through Experience & Leadership"}
         title={"Experience"}
