@@ -46,19 +46,37 @@ const SocialIcon = ({ name }) => {
 const Contact = () => {
   const [status, setStatus] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
 
     // Check honeypot
     if (formData.get('website')) {
-      e.preventDefault();
       setStatus("Message sent successfully!");
       form.reset();
       return;
     }
 
     setStatus("Sending...");
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
+        setStatus("Message sent successfully! I'll get back to you soon.");
+        form.reset();
+      } else {
+        setStatus("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form error:", error);
+      setStatus("Error sending message. Please try again.");
+    }
   };
   const text = `Got a question, how or project Idea?
     WE'D love to hear from you and discus further!`;

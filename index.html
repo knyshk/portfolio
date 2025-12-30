@@ -9,12 +9,13 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- Netlify form detection -->
-<form name="contact" netlify netlify-honeypot="website" hidden>
-  <input type="text" name="name" />
-  <input type="email" name="email" />
-  <textarea name="message"></textarea>
-  <input type="text" name="website" />
-</form>
+    
+    <!-- Netlify Forms hidden form for detection -->
+    <form name="contact" method="POST" netlify netlify-honeypot="website" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <input type="text" name="website" />
+    </form>
   </body>
 </html>
