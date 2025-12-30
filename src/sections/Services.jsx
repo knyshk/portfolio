@@ -26,7 +26,7 @@ const Services = () => {
     });
   }, []);
   return (
-    <section id="services" className="min-h-screen bg-black rounded-t-4xl">
+    <section id="services" className="min-h-screen bg-black rounded-t-3xl sm:rounded-t-4xl">
       <AnimatedHeaderSection
         subTitle={"Behind the scene, Beyond the screen"}
         title={"Services"}
@@ -38,7 +38,7 @@ const Services = () => {
         <div
           ref={(el) => (serviceRefs.current[index] = el)}
           key={index}
-          className="sticky px-10 pt-6 pb-12 text-white bg-black border-t-2 border-white/30"
+          className="sticky px-4 sm:px-6 md:px-10 pt-4 sm:pt-5 md:pt-6 pb-8 sm:pb-10 md:pb-12 text-white bg-black border-t-2 border-white/30"
           style={
             isDesktop
               ? {
@@ -48,23 +48,23 @@ const Services = () => {
               : { top: 0 }
           }
         >
-          <div className="flex items-center justify-between gap-4 font-light">
-            <div className="flex flex-col gap-6">
-              <h2 className="text-4xl lg:text-5xl">{service.title}</h2>
-              <p className="text-xl leading-relaxed tracking-widest lg:text-2xl text-white/60 text-pretty">
+          <div className="flex items-center justify-between gap-3 sm:gap-4 font-light">
+            <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{service.title}</h2>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed tracking-wide sm:tracking-wider md:tracking-widest text-white/60 text-pretty">
                 {service.description}
               </p>
-              <div className="flex flex-col gap-2 text-2xl sm:gap-4 lg:text-3xl text-white/80">
+              <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80">
                 {service.items.map((item, itemIndex) => (
                   <div key={`item-${index}-${itemIndex}`}>
-                    <h3 className="flex">
-                      <span className="mr-12 text-lg text-white/30">
+                    <h3 className="flex items-start">
+                      <span className="mr-6 sm:mr-8 md:mr-12 text-sm sm:text-base md:text-lg text-white/30 flex-shrink-0 mt-1">
                         0{itemIndex + 1}
                       </span>
-                      {item.title}
+                      <span className="flex-1">{item.title}</span>
                     </h3>
                     {itemIndex < service.items.length - 1 && (
-                      <div className="w-full h-px my-2 bg-white/30" />
+                      <div className="w-full h-px my-2 sm:my-2.5 md:my-3 bg-white/30" />
                     )}
                   </div>
                 ))}

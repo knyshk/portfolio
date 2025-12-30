@@ -145,14 +145,14 @@ const Marquee = ({
   return (
     <div
       ref={containerRef}
-      className={`overflow-hidden w-full h-20 md:h-[100px] flex items-center marquee-text-responsive font-light whitespace-nowrap ${className}`}
+      className={`overflow-hidden w-full h-16 sm:h-20 md:h-[100px] flex items-center marquee-text-responsive font-light whitespace-nowrap ${className}`}
     >
       <div className="flex">
         {items.map((text, index) => (
           <span
             key={index}
             ref={(el) => (itemsRef.current[index] = el)}
-            className="flex items-center px-16 gap-x-32"
+            className="flex items-center px-8 sm:px-12 md:px-16 gap-x-12 sm:gap-x-20 md:gap-x-32"
           >
             {text} <Icon icon={icon} className={iconClassName} />
           </span>

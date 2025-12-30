@@ -9,7 +9,7 @@ const Hero = () => {
 Developing intelligent applications that solve real-world problems
 through data-driven insights and advanced algorithms.`;
   return (
-    <section id="home" className="flex flex-col justify-end min-h-screen">
+    <section id="home" className="flex flex-col justify-end min-h-screen overflow-hidden">
       <AnimatedHeaderSection
         subTitle={"CS Student | AI & ML | Generative AI"}
         title={"Kanishk Jain"}
@@ -22,11 +22,11 @@ through data-driven insights and advanced algorithms.`;
       >
         <Canvas
           shadows
-          camera={{ position: [0, 0, -10], fov: 17.5, near: 1, far: 20 }}
+          camera={{ position: [0, 0, -10], fov: isMobile ? 20 : 17.5, near: 1, far: 20 }}
         >
           <ambientLight intensity={0.5} />
           <Float speed={0.5}>
-            <Planet scale={isMobile ? 0.7 : 1} />
+            <Planet scale={isMobile ? 0.6 : 1} />
           </Float>
           <Environment resolution={256}>
             <group rotation={[-Math.PI / 3, 4, 1]}>

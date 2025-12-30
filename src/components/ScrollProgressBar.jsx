@@ -3,11 +3,22 @@ import React, { useState, useEffect, useRef } from "react";
 const ScrollProgressBar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isDarkBg, setIsDarkBg] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const progressBarRef = useRef(null);
   const radius = 30;
+  const mobileRadius = 20;
   const circumference = 2 * Math.PI * radius;
+  const mobileCircumference = 2 * Math.PI * mobileRadius;
 
   useEffect(() => {
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight =
@@ -47,10 +58,17 @@ const ScrollProgressBar = () => {
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial check
     
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
-  const offset = circumference - (scrollProgress / 100) * circumference;
+  const currentRadius = isMobile ? mobileRadius : radius;
+  const currentCircumference = isMobile ? mobileCircumference : circumference;
+  const offset = currentCircumference - (scrollProgress / 100) * currentCircumference;
+  const size = isMobile ? 50 : 70;
+  const centerPos = size / 2;
 
   // Pure black or white colors
   const strokeColor = isDarkBg ? "#ffffff" : "#000000";
@@ -67,34 +85,46 @@ const ScrollProgressBar = () => {
       style={{ 
         background: glassBackground,
         borderColor: glassBorder,
-        boxShadow: glassShadow
+        boxShadow: glassShadow,
+        width: `${size}px`,
+        height: `${size}px`,
+        bottom: isMobile ? '20px' : '30px',
+        left: isMobile ? '20px' : '30px'
       }}
     >
       <div className="scroll-progress-fill">
         <svg
           className="scroll-progress-circle"
-          width="70"
-          height="70"
-          viewBox="0 0 70 70"
+          width={size}
+          height={size}
+          viewBox={`0 0 ${size} ${size}`}
         >
           <circle
             className="scroll-progress-circle-bg"
-            cx="35"
-            cy="35"
-            r={radius}
-            style={{ stroke: bgStrokeColor }}
+            cx={centerPos}
+            cy={centerPos}
+            r={currentRadius}
+            style={{ stroke: bgStrokeColor, strokeWidth: isMobile ? 3 : 4 }}
           />
           <circle
             className="scroll-progress-circle-fill"
-            cx="35"
-            cy="35"
-            r={radius}
-            strokeDasharray={circumference}
+            cx={centerPos}
+            cy={centerPos}
+            r={currentRadius}
+            strokeDasharray={currentCircumference}
             strokeDashoffset={offset}
-            style={{ stroke: strokeColor }}
+            style={{ stroke: strokeColor, strokeWidth: isMobile ? 3 : 4 }}
           />
         </svg>
-        <span className="scroll-progress-text" style={{ color: textColor }}>{Math.round(scrollProgress)}%</span>
+        <span 
+          className="scroll-progress-text" 
+          style={{ 
+            color: textColor,
+            fontSize: isMobile ? '10px' : '14px'
+          }}
+        >
+          {Math.round(scrollProgress)}%
+        </span>
       </div>
     </div>
   );

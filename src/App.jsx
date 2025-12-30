@@ -22,7 +22,7 @@ const App = () => {
   }, [progress]);
 
   return (
-    <ReactLenis root className="relative w-screen min-h-screen overflow-x-auto">
+    <ReactLenis root className="relative w-screen min-h-screen overflow-x-hidden">
       <ScrollProgressBar />
       {!isReady && (
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white transition-opacity duration-700 font-light">

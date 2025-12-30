@@ -113,36 +113,36 @@ const Contact = () => {
           textColor={"text-white"}
           withScrollTrigger={true}
         />
-        <div className="flex px-10 font-light text-white uppercase lg:text-[32px] text-[26px] leading-none mb-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-16">
+        <div className="flex px-4 sm:px-6 md:px-10 font-light text-white uppercase text-lg sm:text-xl md:text-2xl lg:text-[32px] leading-tight sm:leading-none mb-8 sm:mb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-10 sm:gap-12 md:gap-16">
             {/* Left Column - Contact Info */}
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-8 sm:gap-10">
               <div className="social-link">
-                <h2>E-mail</h2>
+                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl">E-mail</h2>
                 <div className="w-full h-px my-2 bg-white/30" />
-                <p className="text-xl tracking-wider lowercase md:text-2xl lg:text-3xl">
+                <p className="text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl tracking-wide sm:tracking-wider lowercase break-all">
                   <a href="mailto:kanishk.jain0510@gmail.com">kanishk.jain0510@gmail.com</a>
                 </p>
               </div>
               <div className="social-link">
-                <h2>Phone</h2>
+                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl">Phone</h2>
                 <div className="w-full h-px my-2 bg-white/30" />
-                <p className="text-xl lowercase md:text-2xl lg:text-3xl">
+                <p className="text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl lowercase">
                   <a href="tel:+917877807017">+91 7877807017</a>
                 </p>
               </div>
               <div className="social-link">
-                <h2>Social Media</h2>
+                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl">Social Media</h2>
                 <div className="w-full h-px my-2 bg-white/30" />
-                <div className="flex flex-wrap gap-4 md:gap-6">
+                <div className="flex flex-wrap gap-4 sm:gap-5 md:gap-6">
                   {socials.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
-                      className="flex flex-col items-center gap-2 md:gap-3 px-2 md:px-3 text-xs leading-tight tracking-wides uppercase md:text-sm hover:text-white/80 transition-colors duration-200"
+                      className="flex flex-col items-center gap-2 sm:gap-2.5 md:gap-3 px-2 sm:px-2.5 md:px-3 text-[10px] sm:text-xs md:text-sm leading-tight tracking-wide uppercase hover:text-white/80 transition-colors duration-200"
                     >
                      <SocialIcon name={social.icon} />
-                     <span className="mt-0.5 md:mt-1">{social.name}</span>
+                     <span className="mt-0.5 sm:mt-1">{social.name}</span>
                     </a>
                   ))}
                 </div>
@@ -151,7 +151,7 @@ const Contact = () => {
 
             {/* Right Column - Contact Form */}
             <div className="social-link">
-              <h2>Send a Message</h2>
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl">Send a Message</h2>
               <div className="w-full h-px my-2 bg-white/30" />
               <form 
                 name="contact" 
@@ -159,7 +159,7 @@ const Contact = () => {
                 data-netlify="true" 
                 data-netlify-honeypot="website"
                 onSubmit={handleSubmit}
-                className="space-y-3 mt-4"
+                className="space-y-3 sm:space-y-4 mt-3 sm:mt-4"
               >
                 <input type="hidden" name="form-name" value="contact" />
                 
@@ -173,47 +173,47 @@ const Contact = () => {
                 />
 
                 <div>
-                  <label className="text-sm text-white/70 block mb-1.5">Name</label>
+                  <label className="text-xs sm:text-sm text-white/70 block mb-1.5">Name</label>
                   <input
                     type="text"
                     name="name"
                     placeholder="Your name"
                     required
-                    className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-2.5 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/20 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 text-white text-xs sm:text-sm placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm text-white/70 block mb-1.5">Email</label>
+                  <label className="text-xs sm:text-sm text-white/70 block mb-1.5">Email</label>
                   <input
                     type="email"
                     name="email"
                     placeholder="your@email.com"
                     required
-                    className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-2.5 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/20 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 text-white text-xs sm:text-sm placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm text-white/70 block mb-1.5">Message</label>
+                  <label className="text-xs sm:text-sm text-white/70 block mb-1.5">Message</label>
                   <textarea
                     name="message"
                     placeholder="Your message here..."
                     required
                     rows="4"
-                    className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-2.5 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors resize-none"
+                    className="w-full bg-white/5 border border-white/20 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 text-white text-xs sm:text-sm placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors resize-none"
                   />
                 </div>
 
                 {status && (
-                  <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
-                    <p className="text-xs text-green-400">{status}</p>
+                  <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-2.5 sm:p-3">
+                    <p className="text-[10px] sm:text-xs text-green-400">{status}</p>
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  className="w-full bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg px-4 py-2.5 text-white text-sm font-medium transition-all duration-200"
+                  className="w-full bg-white/10 hover:bg-white/20 active:bg-white/25 border border-white/20 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 text-white text-xs sm:text-sm font-medium transition-all duration-200"
                 >
                   Send Message
                 </button>

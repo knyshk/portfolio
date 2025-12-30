@@ -43,16 +43,16 @@ const AnimatedHeaderSection = ({
       <div style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}>
         <div
           ref={headerRef}
-          className="flex flex-col justify-center gap-12 pt-16 sm:gap-16"
+          className="flex flex-col justify-center gap-8 sm:gap-10 md:gap-12 pt-12 sm:pt-14 md:pt-16"
         >
           <p
-            className={`text-sm font-light tracking-[0.5rem] uppercase px-10 ${textColor}`}
+            className={`text-[10px] sm:text-xs md:text-sm font-light tracking-[0.3rem] sm:tracking-[0.4rem] md:tracking-[0.5rem] uppercase px-4 sm:px-6 md:px-10 ${textColor}`}
           >
             {subTitle}
           </p>
-          <div className="px-10">
+          <div className="px-4 sm:px-6 md:px-10 overflow-hidden">
             <h1
-              className={`flex flex-col gap-12 uppercase banner-text-responsive sm:gap-16 md:block ${textColor}`}
+              className={`flex flex-col gap-8 sm:gap-10 md:gap-12 uppercase banner-text-responsive md:block ${textColor} break-words`}
             >
               {titleParts.map((part, index) => (
                 <span key={index}>{part} </span>
@@ -61,9 +61,9 @@ const AnimatedHeaderSection = ({
           </div>
         </div>
       </div>
-      <div className={`relative px-10 ${textColor}`}>
+      <div className={`relative px-4 sm:px-6 md:px-10 ${textColor}`}>
         <div className="absolute inset-x-0 border-t-2" />
-        <div className="py-12 sm:py-16 text-end">
+        <div className="py-8 sm:py-10 md:py-12 lg:py-16 text-end">
           <AnimatedTextLines
             text={text}
             className={`font-light uppercase value-text-responsive ${textColor}`}
