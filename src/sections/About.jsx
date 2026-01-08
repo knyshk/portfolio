@@ -56,7 +56,7 @@ const About = () => {
         textColor={"text-white"}
         withScrollTrigger={true}
       />
-      <div className="flex flex-col items-start justify-between gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6 md:px-10 pb-12 md:pb-16 lg:flex-row\">
+      <div className="flex flex-col items-start justify-between gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6 md:px-10 pb-12 md:pb-16 lg:flex-row">
         <img
           ref={imgRef}
           src="images/man.png"
