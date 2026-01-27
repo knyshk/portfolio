@@ -206,13 +206,68 @@ body {
 }
 
 .hero-fallback {
+  position: absolute;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 30% 30%, rgba(207, 163, 85, 0.2), transparent 45%),
-    radial-gradient(circle at 70% 60%, rgba(57, 54, 50, 0.18), transparent 55%),
+    radial-gradient(circle at 30% 30%, rgba(207, 163, 85, 0.15), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(57, 54, 50, 0.14), transparent 55%),
     linear-gradient(180deg, #f0efe9 0%, #e5e5e0 45%, #d9d7cf 100%);
-  opacity: 0.95;
+  opacity: 0.98;
+}
+
+.hero-blob {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  filter: blur(60px);
+  border-radius: 50%;
+  opacity: 0.75;
+  animation: float-blob 12s ease-in-out infinite alternate;
+}
+
+.hero-blob-1 {
+  top: 8%;
+  left: 10%;
+  background: rgba(207, 163, 85, 0.55);
+}
+
+.hero-moon-img {
+  position: absolute;
+  bottom: clamp(14px, 5vw, 38px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90vw, 520px);
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18));
+  animation: float-moon 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes float-moon {
+  from {
+    transform: translate(-50%, -2px) scale(1);
+  }
+  to {
+    transform: translate(-50%, 6px) scale(1.03);
+  }
+}
+
+.hero-blob-2 {
+  bottom: 6%;
+  right: 8%;
+  background: rgba(57, 54, 50, 0.45);
+  animation-delay: 1.5s;
+}
+
+@keyframes float-blob {
+  from {
+    transform: translate3d(-8px, -6px, 0) scale(1);
+  }
+  to {
+    transform: translate3d(10px, 12px, 0) scale(1.08);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -258,11 +313,32 @@ body {
   .hero-fallback {
     opacity: 1;
   }
+
+  .hero-moon-img {
+    width: min(92vw, 460px);
+    bottom: clamp(10px, 5vw, 28px);
+  }
 }
 
 @media (max-width: 480px) {
   .value-text-responsive {
     font-size: 13px;
+  }
+
+  .hero-blob {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-moon-img {
+    width: min(94vw, 420px);
+    bottom: clamp(6px, 4vw, 20px);
+  }
+}
+
+@media (min-width: 769px) {
+  .hero-moon-img {
+    display: none;
   }
 }
 

@@ -13,7 +13,7 @@ const Hero = () => {
 Developing intelligent applications that solve real-world problems
 through data-driven insights and advanced algorithms.`;
   return (
-    <section id="home" className="flex flex-col justify-end min-h-screen overflow-hidden">
+    <section id="home" className="relative flex flex-col justify-end min-h-screen overflow-hidden">
       <AnimatedHeaderSection
         subTitle={"CS Student | AI & ML | Generative AI"}
         title={"Kanishk Jain"}
@@ -66,7 +66,17 @@ through data-driven insights and advanced algorithms.`;
           </Canvas>
         </figure>
       ) : (
-        <div className="absolute inset-0 -z-50 hero-fallback" aria-hidden="true" />
+        <div className="absolute inset-0 -z-50 hero-fallback" aria-hidden="true">
+          <div className="hero-blob hero-blob-1" />
+          <div className="hero-blob hero-blob-2" />
+          <img
+            src="/images/moon.png"
+            alt="Moon"
+            className="hero-moon-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       )}
     </section>
   );
