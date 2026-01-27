@@ -14,6 +14,7 @@ const AnimatedHeaderSection = ({
   const headerRef = useRef(null);
   const shouldSplitTitle = title.includes(" ");
   const titleParts = shouldSplitTitle ? title.split(" ") : [title];
+  const maskClass = textColor.includes("white") ? "header-mask-dark" : "header-mask-light";
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: withScrollTrigger
@@ -52,7 +53,7 @@ const AnimatedHeaderSection = ({
           </p>
           <div className="px-4 sm:px-6 md:px-10 overflow-hidden">
             <h1
-              className={`flex flex-wrap items-baseline gap-4 sm:gap-6 md:block uppercase banner-text-responsive ${textColor} break-words leading-[1.05]`}
+              className={`flex flex-wrap items-baseline gap-4 sm:gap-6 md:block uppercase banner-text-responsive ${textColor} break-words leading-[1.05] banner-single-line ${maskClass}`}
             >
               {titleParts.map((part, index) => (
                 <span key={index} className="whitespace-nowrap md:whitespace-normal">

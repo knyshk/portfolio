@@ -114,6 +114,12 @@ body {
   font-family: var(--font-amiamie);
 }
 
+html, body, .lenis, .lenis-root, .lenis__root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Hide scrollbar */
 ::-webkit-scrollbar {
   width: 0;
@@ -201,6 +207,40 @@ body {
   @apply text-[24px] sm:text-[30px] md:text-[36px] lg:text-[48px] xl:text-[60px];
 }
 
+.banner-single-line {
+  white-space: nowrap;
+}
+
+.header-mask-light {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 46%,
+    #e5e5e0 46%,
+    #e5e5e0 54%,
+    transparent 54%,
+    transparent 100%
+  );
+  display: inline-block;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.header-mask-dark {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 46%,
+    #000000 46%,
+    #000000 54%,
+    transparent 54%,
+    transparent 100%
+  );
+  display: inline-block;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 .hero-canvas {
   pointer-events: none;
 }
@@ -285,8 +325,8 @@ body {
 
 @media (max-width: 768px) {
   .banner-text-responsive {
-    font-size: clamp(32px, 9vw + 8px, 44px);
-    line-height: 1.1;
+    font-size: clamp(26px, 8vw + 6px, 38px);
+    line-height: 1.05;
   }
 
   .value-text-responsive {
@@ -317,6 +357,10 @@ body {
   .hero-moon-img {
     width: min(92vw, 460px);
     bottom: clamp(10px, 5vw, 28px);
+  }
+
+  .banner-single-line {
+    white-space: nowrap;
   }
 }
 
