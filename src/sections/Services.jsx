@@ -51,7 +51,7 @@ const Services = () => {
           <div className="flex items-center justify-between gap-3 sm:gap-4 font-light">
             <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{service.title}</h2>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed tracking-wide sm:tracking-wider md:tracking-widest text-white/60 text-pretty">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed tracking-wide sm:tracking-wider md:tracking-widest text-white/60 text-pretty">
                 {service.description}
               </p>
               <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80">

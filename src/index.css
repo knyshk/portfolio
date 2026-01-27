@@ -190,7 +190,7 @@ body {
 }
 
 @utility value-text-responsive {
-  @apply text-lg sm:text-xl md:text-2xl lg:text-[26px] xl:text-[32px];
+  @apply text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl;
 }
 
 @utility marquee-text-responsive {
@@ -198,6 +198,6 @@ body {
 }
 
 @utility contact-text-responsive {
-  @apply text-[32px] sm:text-[42px] md:text-[52px] lg:text-[80px] xl:text-[100px];
+  @apply text-[24px] sm:text-[30px] md:text-[36px] lg:text-[48px] xl:text-[60px];
 }
 
