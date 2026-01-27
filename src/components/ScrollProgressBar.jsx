@@ -38,17 +38,17 @@ const ScrollProgressBar = () => {
       
       if (scrollPercent <= 0.8) {
         setIsDarkBg(false); // White background
-      } else if (scrollPercent > 0.8 && scrollPercent <= 7) {
+      } else if (scrollPercent > 0.8 && scrollPercent <= 7.5) {
         setIsDarkBg(true); // Black background
-      } else if (scrollPercent > 7 && scrollPercent <= 12.5) {
+      } else if (scrollPercent > 7.5 && scrollPercent <= 12.5) {
         setIsDarkBg(false); // White background
       } else if (scrollPercent > 12.5 && scrollPercent <= 18.5) {
         setIsDarkBg(true); // Black background
-      } else if (scrollPercent > 18.5 && scrollPercent <= 30) {
+      } else if (scrollPercent > 18.5 && scrollPercent <= 26.7) {
         setIsDarkBg(false); // White background
-      } else if (scrollPercent > 30 && scrollPercent <= 62.5) {
+      } else if (scrollPercent > 26.7 && scrollPercent <= 58.8) {
         setIsDarkBg(true); // Black background
-      } else if (scrollPercent > 62.5 && scrollPercent <= 88.8) {
+      } else if (scrollPercent > 58.8 && scrollPercent <= 88.4) {
         setIsDarkBg(false); // White background
       } else {
         setIsDarkBg(true); // Black background
