@@ -201,3 +201,68 @@ body {
   @apply text-[24px] sm:text-[30px] md:text-[36px] lg:text-[48px] xl:text-[60px];
 }
 
+.hero-canvas {
+  pointer-events: none;
+}
+
+.hero-fallback {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(207, 163, 85, 0.2), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(57, 54, 50, 0.18), transparent 55%),
+    linear-gradient(180deg, #f0efe9 0%, #e5e5e0 45%, #d9d7cf 100%);
+  opacity: 0.95;
+}
+
+@media (max-width: 1024px) {
+  .scroll-progress-bar {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .scroll-progress-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-text-responsive {
+    font-size: clamp(32px, 9vw + 8px, 44px);
+    line-height: 1.1;
+  }
+
+  .value-text-responsive {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .contact-text-responsive {
+    font-size: clamp(20px, 7vw, 32px);
+    line-height: 1.25;
+  }
+
+  .scroll-progress-bar {
+    width: 54px;
+    height: 54px;
+    bottom: 14px;
+    left: 14px;
+  }
+
+  .scroll-progress-text {
+    font-size: 11px;
+  }
+
+  .hero-fallback {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .value-text-responsive {
+    font-size: 13px;
+  }
+}
+

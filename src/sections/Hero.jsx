@@ -3,8 +3,12 @@ import { Planet } from "../components/Planet";
 import { Environment, Float, Lightformer } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
+
 const Hero = () => {
-  const isMobile = useMediaQuery({ maxWidth: 853 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ maxWidth: 1024 });
+  const planetScale = isTablet ? 0.75 : 1;
+  const planetFov = isTablet ? 19 : 17.5;
   const text = `AI enthusiast exploring machine learning, generative AI, and LLMs.
 Developing intelligent applications that solve real-world problems
 through data-driven insights and advanced algorithms.`;
@@ -16,48 +20,54 @@ through data-driven insights and advanced algorithms.`;
         text={text}
         textColor={"text-black"}
       />
-      <figure
-        className="absolute inset-0 -z-50"
-        style={{ width: "100vw", height: "100vh" }}
-      >
-        <Canvas
-          shadows
-          camera={{ position: [0, 0, -10], fov: isMobile ? 20 : 17.5, near: 1, far: 20 }}
+      {!isMobile ? (
+        <figure
+          className="absolute inset-0 -z-50 hero-canvas"
+          style={{ width: "100vw", height: "100vh" }}
         >
-          <ambientLight intensity={0.5} />
-          <Float speed={0.5}>
-            <Planet scale={isMobile ? 0.6 : 1} />
-          </Float>
-          <Environment resolution={256}>
-            <group rotation={[-Math.PI / 3, 4, 1]}>
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[0, 5, -9]}
-                scale={10}
-              />
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[0, 3, 1]}
-                scale={10}
-              />
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[-5, -1, -1]}
-                scale={10}
-              />
-              <Lightformer
-                form={"circle"}
-                intensity={2}
-                position={[10, 1, 0]}
-                scale={16}
-              />
-            </group>
-          </Environment>
-        </Canvas>
-      </figure>
+          <Canvas
+            shadows
+            dpr={[1, 1.25]}
+            frameloop={isTablet ? "demand" : "always"}
+            camera={{ position: [0, 0, -10], fov: planetFov, near: 1, far: 20 }}
+          >
+            <ambientLight intensity={0.5} />
+            <Float speed={0.5}>
+              <Planet scale={planetScale} />
+            </Float>
+            <Environment resolution={256}>
+              <group rotation={[-Math.PI / 3, 4, 1]}>
+                <Lightformer
+                  form={"circle"}
+                  intensity={2}
+                  position={[0, 5, -9]}
+                  scale={10}
+                />
+                <Lightformer
+                  form={"circle"}
+                  intensity={2}
+                  position={[0, 3, 1]}
+                  scale={10}
+                />
+                <Lightformer
+                  form={"circle"}
+                  intensity={2}
+                  position={[-5, -1, -1]}
+                  scale={10}
+                />
+                <Lightformer
+                  form={"circle"}
+                  intensity={2}
+                  position={[10, 1, 0]}
+                  scale={16}
+                />
+              </group>
+            </Environment>
+          </Canvas>
+        </figure>
+      ) : (
+        <div className="absolute inset-0 -z-50 hero-fallback" aria-hidden="true" />
+      )}
     </section>
   );
 };
