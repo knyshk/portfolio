@@ -2,7 +2,7 @@
 
 A sleek, premium, and highly interactive developer portfolio built with a cutting-edge tech stack. This project showcases a professional journey, technical skills, and featured projects with a focus on high-performance animations and visual excellence.
 
-![Portfolio Preview](https://via.placeholder.com/1200x630.png?text=Portfolio+Preview+Placeholder) *Replace with a real screenshot of your portfolio*
+![Portfolio Preview](src/assets/demo.png) *Replace with a real screenshot of your portfolio*
 
 ## 🚀 Features
 
@@ -61,7 +61,7 @@ A sleek, premium, and highly interactive developer portfolio built with a cuttin
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/knyshk/portfolio
    cd Portfolio
    ```
 
@@ -95,4 +95,4 @@ This project is open-source and available under the MIT License.
 
 ## 🤝 Contact
 
-Created by [Your Name] - feel free to reach out via the contact form on the site!
+Created by Kanishk Jain - feel free to reach out via the contact form on the site!
