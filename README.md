@@ -89,10 +89,6 @@ The application will be available at [http://localhost:3000](http://localhost:30
 
 ---
 
-## 📄 License
-
-This project is open-source and available under the MIT License.
-
 ## 🤝 Contact
 
 Created by Kanishk Jain - feel free to reach out via the contact form on the site!
