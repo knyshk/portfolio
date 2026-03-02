@@ -2,7 +2,7 @@
 
 A sleek, premium, and highly interactive developer portfolio built with a cutting-edge tech stack. This project showcases a professional journey, technical skills, and featured projects with a focus on high-performance animations and visual excellence.
 
-![Portfolio Preview](src/assets/demo.png) *Replace with a real screenshot of your portfolio*
+![Portfolio Preview](/home/kanishk-jain/Desktop/Portfolio/src/assets/demo.png)
 
 ## 🚀 Features
 
