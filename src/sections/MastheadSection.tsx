@@ -40,7 +40,7 @@ export default function MastheadSection() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="transition-all duration-500 grayscale hover:grayscale-0 hover:scale-105"
+            className="transition-all duration-500 max-lg:grayscale-0 lg:grayscale lg:hover:grayscale-0 hover:scale-105"
           >
             <img
               src={portrait1}

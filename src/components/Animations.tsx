@@ -2,6 +2,69 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '../lib/utils';
 
+// Custom hook to detect if element is centered in viewport (for mobile color effect)
+const useViewportCenter = (threshold = 0.5) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isCentered, setIsCentered] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    // Only apply on mobile/tablet devices
+    const isMobile = window.innerWidth < 1024;
+    if (!isMobile) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const rect = entry.boundingClientRect;
+          const viewportHeight = window.innerHeight;
+          const elementCenter = rect.top + rect.height / 2;
+          const viewportCenter = viewportHeight / 2;
+          
+          // Calculate how close the element is to viewport center (0 = perfect center, 1 = edge)
+          const distanceFromCenter = Math.abs(elementCenter - viewportCenter) / (viewportHeight / 2);
+          
+          // Element is considered centered if it's within 30% of viewport center
+          setIsCentered(distanceFromCenter < 0.6);
+        } else {
+          setIsCentered(false);
+        }
+      },
+      {
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+        rootMargin: '0px'
+      }
+    );
+
+    observer.observe(element);
+
+    // Re-check on scroll for smooth transitions
+    const handleScroll = () => {
+      if (!element) return;
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const elementCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportHeight / 2;
+      const distanceFromCenter = Math.abs(elementCenter - viewportCenter) / (viewportHeight / 2);
+      
+      const isVisible = rect.top < viewportHeight && rect.bottom > 0;
+      setIsCentered(isVisible && distanceFromCenter < 0.6);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [threshold]);
+
+  return { ref, isCentered };
+};
+
 interface BentoItemProps {
   children: React.ReactNode;
   className?: string;
@@ -18,6 +81,8 @@ export const BentoItem: React.FC<BentoItemProps & { animationType?: 'slideUp' | 
   id, 
   animationType = 'slideUp' 
 }) => {
+  const { ref: centerRef, isCentered } = useViewportCenter();
+  
   const variants = {
     slideUp: { initial: { opacity: 0, y: 40 }, whileInView: { opacity: 1, y: 0 } },
     slideLeft: { initial: { opacity: 0, x: -40 }, whileInView: { opacity: 1, x: 0 } },
@@ -30,6 +95,7 @@ export const BentoItem: React.FC<BentoItemProps & { animationType?: 'slideUp' | 
 
   return (
     <motion.div
+      ref={centerRef}
       id={id}
       initial={selectedVariant.initial}
       whileInView={selectedVariant.whileInView}
@@ -40,7 +106,9 @@ export const BentoItem: React.FC<BentoItemProps & { animationType?: 'slideUp' | 
         ease: [0.215, 0.61, 0.355, 1.0]
       }}
       className={cn(
-        "neo-border neo-brutal-shadow bg-paper-bg p-6 relative overflow-hidden group grayscale hover:grayscale-0 transition-all duration-500",
+        "neo-border neo-brutal-shadow bg-paper-bg p-6 relative overflow-hidden group transition-all duration-500",
+        "grayscale lg:hover:grayscale-0", // Desktop: color on hover
+        isCentered ? "max-lg:grayscale-0" : "", // Mobile: color when centered
         className
       )}
     >
@@ -231,6 +299,7 @@ export const SpotlightCard = ({ children, className }: { children: React.ReactNo
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { ref: centerRef, isCentered } = useViewportCenter();
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return;
@@ -241,13 +310,24 @@ export const SpotlightCard = ({ children, className }: { children: React.ReactNo
     });
   };
 
+  // Merge refs
+  const setRefs = (element: HTMLDivElement) => {
+    ref.current = element;
+    (centerRef as any).current = element;
+  };
+
   return (
     <div
-      ref={ref}
+      ref={setRefs}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={cn("relative neo-border neo-brutal-shadow bg-white overflow-hidden grayscale hover:grayscale-0 transition-all duration-500", className)}
+      className={cn(
+        "relative neo-border neo-brutal-shadow bg-white overflow-hidden transition-all duration-500",
+        "grayscale lg:hover:grayscale-0", // Desktop: color on hover
+        isCentered ? "max-lg:grayscale-0" : "", // Mobile: color when centered
+        className
+      )}
     >
       <div
         className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"

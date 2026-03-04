@@ -16,14 +16,14 @@ export default function NavbarSection({ isMenuOpen, setIsMenuOpen }: NavbarSecti
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="neo-border neo-brutal-shadow bg-paper-bg px-4 py-1 font-serif font-black text-xl cursor-pointer grayscale hover:grayscale-0 transition-all duration-500"
+            className="neo-border neo-brutal-shadow bg-paper-bg px-4 py-1 font-serif font-black text-xl cursor-pointer max-lg:grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-500"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             Knyshk
           </motion.div>
         </Magnet>
 
-        <div className="hidden md:flex gap-8 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="hidden md:flex gap-8 max-lg:grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-500">
           {NAV_ITEMS.map((item) => (
             <Magnet key={item} strength={0.2}>
               <a

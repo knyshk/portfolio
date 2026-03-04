@@ -2,7 +2,7 @@ import { Magnet } from '../components/Animations';
 
 export default function FooterSection() {
   return (
-    <footer className="mt-12 md:mt-20 py-8 border-t-4 border-paper-ink flex flex-col md:flex-row justify-between items-center gap-4 grayscale hover:grayscale-0 transition-all duration-500">
+    <footer className="mt-12 md:mt-20 py-8 border-t-4 border-paper-ink flex flex-col md:flex-row justify-between items-center gap-4 max-lg:grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-500">
       <div className="flex flex-col gap-1">
         <p className="font-mono text-[10px] md:text-sm font-black uppercase text-center md:text-left">© 2026 Kanishk Jain. All rights reserved.</p>
         <p className="font-serif italic text-[10px] md:text-xs opacity-60 text-center md:text-left">Printed on recycled digital pixels.</p>
