@@ -25,6 +25,13 @@ app.use(express.json({ limit: '50mb' }));
 
 app.use(helmet({
   crossOriginResourcePolicy: false,
+  frameguard: false,
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      frameAncestors: ["'self'", "https://knyshk-portfolio.netlify.app"],
+    },
+  },
 }));
 
 const globalLimiter = rateLimit({
