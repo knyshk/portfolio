@@ -11,7 +11,7 @@ export type BlogRoute =
   | { page: 'post'; id: number }
   | { page: 'editor'; id?: number };
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 export default function BlogApp({ onNavigateHome }: { onNavigateHome: () => void }) {
   const [route, setRoute] = useState<BlogRoute>({ page: 'home' });
