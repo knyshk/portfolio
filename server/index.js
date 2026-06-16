@@ -54,7 +54,7 @@ const commentLimiter = rateLimit({
 app.use(globalLimiter);
 
 // Serve uploaded files
-const uploadsDir = path.join(__dirname, 'uploads');
+const uploadsDir = path.join(__dirname, 'data', 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -63,7 +63,7 @@ app.use('/uploads', express.static(uploadsDir));
 // ─────────────────────────────────────────────
 // SQLite Database Setup
 // ─────────────────────────────────────────────
-const db = new Database(path.join(__dirname, 'blog.db'));
+const db = new Database(path.join(__dirname, 'data', 'blog.db'));
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 
