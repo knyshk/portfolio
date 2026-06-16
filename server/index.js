@@ -47,7 +47,7 @@ const contactLimiter = rateLimit({
 
 const commentLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 5,
+  max: 30,
   message: { error: 'Too many comments. Please try again later.' },
 });
 
