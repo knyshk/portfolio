@@ -8,6 +8,8 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import crypto from 'crypto';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 
@@ -20,6 +22,36 @@ const ADMIN_PASSWORD = process.env.BLOG_ADMIN_PASSWORD || 'admin123';
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
+
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
+
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200,
+  message: { error: 'Too many requests from this IP, please try again after 15 minutes' },
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: { error: 'Too many login attempts. Please try again after 15 minutes' },
+});
+
+const contactLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 3,
+  message: { error: 'Too many contact requests. Please try again later.' },
+});
+
+const commentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: { error: 'Too many comments. Please try again later.' },
+});
+
+app.use(globalLimiter);
 
 // Serve uploaded files
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -128,7 +160,7 @@ transporter.verify((error, success) => {
 });
 
 // Contact form endpoint (existing)
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', contactLimiter, async (req, res) => {
   const { senderName, senderEmail, message } = req.body;
 
   if (!senderName || !senderEmail || !message) {
@@ -169,7 +201,7 @@ app.post('/api/contact', async (req, res) => {
 // ─────────────────────────────────────────────
 
 // Auth check
-app.post('/api/blog/auth', (req, res) => {
+app.post('/api/blog/auth', authLimiter, (req, res) => {
   const { password } = req.body;
   if (password === ADMIN_PASSWORD) {
     res.json({ success: true });
@@ -406,7 +438,7 @@ app.get('/api/blog/posts/:id/comments', (req, res) => {
 });
 
 // Add comment
-app.post('/api/blog/posts/:id/comments', (req, res) => {
+app.post('/api/blog/posts/:id/comments', commentLimiter, (req, res) => {
   const { authorName, content } = req.body;
 
   if (!authorName || !content) {

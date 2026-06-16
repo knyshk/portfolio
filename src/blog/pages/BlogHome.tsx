@@ -100,16 +100,7 @@ export default function BlogHome({ navigate, adminPassword, onAdminLogin, apiBas
             className="w-full neo-border bg-paper-bg pl-10 pr-4 py-3 font-serif font-bold focus:bg-neo-yellow/20 outline-none transition-colors text-sm"
           />
         </div>
-        {!adminPassword && (
-          <Magnet strength={0.05}>
-            <button
-              onClick={() => setShowLoginModal(true)}
-              className="neo-border neo-brutal-shadow neo-brutal-shadow-hover neo-brutal-shadow-active bg-paper-ink text-paper-bg hover:bg-neo-green hover:text-paper-ink px-6 py-3 font-serif font-bold uppercase tracking-wider text-sm transition-colors flex items-center gap-2 whitespace-nowrap"
-            >
-              <Lock size={14} /> Admin Login
-            </button>
-          </Magnet>
-        )}
+
       </div>
 
       {/* Posts Grid */}
@@ -290,52 +281,7 @@ export default function BlogHome({ navigate, adminPassword, onAdminLogin, apiBas
         </>
       )}
 
-      {/* Admin Login Modal */}
-      {showLoginModal && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-paper-ink/60 backdrop-blur-sm p-4">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="neo-border neo-brutal-shadow bg-paper-bg p-8 max-w-sm w-full relative"
-          >
-            <div className="absolute -top-4 -right-4 bg-neo-pink text-paper-bg px-3 py-1 neo-border font-mono text-xs font-black rotate-6">
-              ADMIN
-            </div>
-            <h3 className="font-serif font-black text-2xl uppercase mb-4">Admin Login</h3>
-            <p className="font-serif italic text-sm opacity-60 mb-4">
-              Enter the admin password to create and manage posts.
-            </p>
-            {loginError && (
-              <div className="mb-3 p-2 bg-neo-pink/20 neo-border font-mono text-xs font-bold text-neo-pink">
-                {loginError}
-              </div>
-            )}
-            <input
-              type="password"
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
-              placeholder="Password"
-              className="w-full neo-border bg-paper-bg p-3 font-serif font-bold focus:bg-neo-yellow outline-none transition-colors text-sm mb-4"
-              autoFocus
-            />
-            <div className="flex gap-3">
-              <button
-                onClick={handleLogin}
-                className="flex-1 neo-border neo-brutal-shadow bg-paper-ink text-paper-bg hover:bg-neo-green hover:text-paper-ink py-3 font-serif font-bold uppercase tracking-wider text-sm transition-colors"
-              >
-                Login
-              </button>
-              <button
-                onClick={() => { setShowLoginModal(false); setLoginPassword(''); setLoginError(''); }}
-                className="neo-border bg-paper-bg hover:bg-neo-pink/20 px-4 py-3 font-serif font-bold uppercase tracking-wider text-sm transition-colors"
-              >
-                Cancel
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      )}
+
     </div>
   );
 }
