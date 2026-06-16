@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Newspaper } from 'lucide-react';
 import { BentoItem, Magnet, Reveal } from '../components/Animations';
 
 export default function ContactSection() {
@@ -83,6 +83,16 @@ export default function ContactSection() {
                   <MapPin size={24} />
                 </div>
                 <span className="font-serif font-bold text-base md:text-lg lg:text-xl hover:text-neo-pink transition-colors leading-tight">Jaipur, Rajasthan</span>
+              </div>
+              </a>
+            </Magnet>
+            <Magnet strength={0.1}>
+              <a href="#blog" className="flex items-center gap-4 group py-1">
+              <div className="flex items-center gap-4 group cursor-pointer py-1">
+                <div className="w-12 h-12 flex items-center justify-center bg-neo-green text-paper-bg group-hover:scale-110 transition-transform shrink-0">
+                  <Newspaper size={24} />
+                </div>
+                <span className="font-serif font-bold text-base md:text-lg lg:text-xl hover:text-neo-green transition-colors leading-tight">Read My Blog</span>
               </div>
               </a>
             </Magnet>

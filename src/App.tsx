@@ -19,9 +19,15 @@ import ProjectsGridSection from './sections/ProjectsGridSection';
 import ProjectsHeaderSection from './sections/ProjectsHeaderSection';
 import QuickStatsSection from './sections/QuickStatsSection';
 import SkillsSection from './sections/SkillsSection';
+import LoadingScreen from './components/LoadingScreen';
+import BlogApp from './blog/BlogApp';
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [view, setView] = useState<'loading' | 'portfolio' | 'blog'>(
+    window.location.hash.includes('#blog') ? 'blog' : 'loading'
+  );
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -30,7 +36,32 @@ export default function App() {
   });
 
   useEffect(() => {
-    const lenis = new Lenis();
+    const handleHashChange = () => {
+      if (window.location.hash.includes('#blog')) {
+        setView('blog');
+      } else if (window.location.hash === '' || window.location.hash === '#') {
+        // Only set to portfolio if we're not currently loading
+        setView(prev => prev === 'loading' ? 'loading' : 'portfolio');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    if (view === 'loading') return; // Don't init lenis during loading
+
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.08,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+      syncTouch: true,
+      syncTouchLerp: 0.1,
+    });
 
     function raf(time: number) {
       lenis.raf(time);
@@ -42,7 +73,15 @@ export default function App() {
     return () => {
       lenis.destroy();
     };
-  }, []);
+  }, [view]);
+
+  if (view === 'loading') {
+    return <LoadingScreen onComplete={() => setView('portfolio')} />;
+  }
+
+  if (view === 'blog') {
+    return <BlogApp onNavigateHome={() => { window.location.hash = ''; setView('portfolio'); }} />;
+  }
 
   return (
     <ParallaxProvider>
