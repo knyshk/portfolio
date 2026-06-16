@@ -34,7 +34,7 @@ const globalLimiter = rateLimit({
 });
 
 const authLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000,
+  windowMs: 15 * 60 * 1000,
   max: 30,
   message: { error: 'Too many login attempts. Please try again after 15 minutes' },
 });
@@ -47,7 +47,7 @@ const contactLimiter = rateLimit({
 
 const commentLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 30,
+  max: 5,
   message: { error: 'Too many comments. Please try again later.' },
 });
 
