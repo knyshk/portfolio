@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Mail, MapPin, Phone, Newspaper } from 'lucide-react';
 import { BentoItem, Magnet, Reveal } from '../components/Animations';
 
